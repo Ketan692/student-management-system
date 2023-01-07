@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance{% endblock title %}
+
+{% block body %}
+<div class="date container-fluid">
+
+  <h3>{{ date }}</h3>
+  <div class="input-group sel-course">
+
+    <select class="form-select" name="subject" id="inputGroupSelect04" aria-label="Example select with button addon" required>
+      <option selected>Select Subject</option>
+      {% for i in subjects %}
+      <option value="{{ i }}">{{ i }}</option>
+      {% endfor %}
+    </select>
+
+  </div>
+</div>
+
+{% if course_students %}
+<form class="" action="{{ url_for('sample') }}" method="post">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Roll_no.</th>
+        <th scope="col">Name</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    {% for i in course_students %}
+    <tbody>
+      <tr>
+        <td>{{ i.roll_no }}</td>
+        <td>{{ i.first_name }} {{ i.middle_name }} {{ i.last_name }}</td>
+        <td>
+          <div class="form-check form-switch">
+            <input class="form-check-input" name="attendence" value="{{  i.roll_no}}" type="checkbox" id="flexSwitchCheckChecked">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Present</label>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button type="submit" name="button" class="btn btn-dark">Submit</button>
+
+</form>
+{% else %}
+<div class="empty container">
+  <img src="https://cdn-icons-png.flaticon.com/128/6598/6598519.png" alt="">
+  <h1 style="font-weight:bold;">NO STUDENT IN THIS CLASS</h1>
+</div>
+{% endif %}
+{% endblock body %}

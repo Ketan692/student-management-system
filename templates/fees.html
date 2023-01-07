@@ -1,0 +1,73 @@
+  {% extends 'base.html' %}
+
+  {% block title %}All Students{% endblock title %}
+
+  {% block body %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="alert alert-{{ messages.0.0 }}" role="alert">
+    {% for category, message in messages %}
+    <h5 class="flash add">{{ message }}</h5>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  <form class="" action="{{ url_for('all_students') }}" method="post">
+    <div class="input-group mb-3 search-student">
+      <input type="text" class="form-control" name="student_name" placeholder="Search Student by First Name">
+      <buttonn class="btn btn-dark" type="submit" name="button">Search</button>
+    </div>
+  </form>
+
+  <div class="container all-st">
+    <a href="{{ url_for('all_students') }}" class="btn btn-dark">All Students</a>
+    <a href="{{ url_for('students') }}" class="btn btn-dark">Back</a>
+  </div>
+
+  {% if students==[] %}
+  <div class="no-record">
+    <h1 style="font-weight: bold;">No Record Available</h1>
+    <img src="https://cdn-icons-png.flaticon.com/128/3585/3585596.png" alt="">
+    {% else %}
+  </div>
+
+  <table class="table table-hover">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Sr. No.</th>
+        <th scope="col">Name</th>
+        <th scope="col">Father's Name</th>
+        <th scope="col">Course</th>
+        <th scope="col">Contact No.</th>
+        <th scope="col">Payment.</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="fees-body">
+      {% for i in students %}
+      {% if i.fees=="Done" %}
+      <tr class="bg-success">
+        {% else %}
+      <tr class="bg-danger">
+        {% endif %}
+        <th scope="row">{{ students.index(i)+1 }}</th>
+        <td>{{ i.first_name.capitalize() }} {{ i.middle_name.capitalize() }} {{ i.last_name.capitalize() }}</td>
+        <td>{{ i.parent_first_name.capitalize() }} {{ i.parent_middle_name.capitalize() }} {{ i.parent_last_name.capitalize() }}</td>
+        <td>{{ i.course }}</td>
+        <td>{{ i.phone_no }}</td>
+        <td>{{ i.fees }}</td>
+        {% if i.fees=="Done" %}
+        <td></td>
+        {% else %}
+
+        <td><a href="{{ url_for('payment_done', id=i.id) }}" class="btn btn-dark btn-sm">Payment Done</a></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+
+
+  {% endblock body %}

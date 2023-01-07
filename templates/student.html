@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Students{% endblock title %}
+
+{% block body %}
+<h2 class="heading">Dashboard</h2>
+<div class="row container-fluid">
+  <div class="col-4 dash-students">
+    <div class="row">
+      <div class="col-4">
+        <img src="https://cdn-icons-png.flaticon.com/128/2921/2921185.png" alt="">
+      </div>
+      <div class="col-8">
+        <a class="ds-lk" href="{{ url_for('add_student') }}">
+          <h1>Add Student</h1>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 dash-attendants">
+    <div class="row">
+      <div class="col-4">
+        <img src="https://cdn-icons-png.flaticon.com/128/3183/3183581.png" alt="">
+      </div>
+      <div class="col-8">
+        <a class="ds-lk" href="{{ url_for('update_student') }}">
+          <h1>Update Records</h1>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col dash-fees">
+    <div class="row">
+      <div class="col-4">
+        <img src="https://cdn-icons-png.flaticon.com/128/3183/3183581.png" alt="">
+      </div>
+      <div class="col-8">
+        <a class="ds-lk" href="{{ url_for('all_students') }}">
+          <h1>Student Records</h1>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock body %}

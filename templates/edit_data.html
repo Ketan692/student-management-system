@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Student{% endblock title %}
+
+{% block body %}
+
+<form class="" action="{{ url_for('student_updated', id=student.id)}}" method="post">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="alert alert-{{ messages.0.0 }}" role="alert">
+    {% for category, message in messages %}
+    <h5 class="flash add">{{ message }}</h5>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  <div class="container add-st">
+    <h1 class="add-hd">UPDATE RECORD</h1>
+    <div class="row apli-name">
+      <div class="col-4">
+
+        <h2>Batch</h2>
+        <select name="batch" class="form-select" aria-label="Default select example">
+          <option selected>{{ student.batch }}</option>
+          {% for i in years[::-1] %}
+          <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-4">
+
+        <h2>Program</h2>
+        <select name="course" class="form-select" aria-label="Default select example" required>
+          <option selected>{{ student.course }}</option>
+          <option value="FYBCOM">FYBCOM</option>
+          <option value="SYBCOM">SYBCOM</option>
+          <option value="TYBCOM">TYBCOM</option>
+          <option value="FYBAF">FYBAF</option>
+          <option value="SYBAF">SYBAF</option>
+          <option value="TYBAF">TYBAF</option>
+          <option value="FYBMS">FYBMS</option>
+          <option value="SYBMS">SYBMS</option>
+          <option value="TYBMS">TYBMS</option>
+          <option value="FYBSCIT">FYBSCIT</option>
+          <option value="SYBSCIT">SYBSCIT</option>
+          <option value="TYBSCIT">TYBSCIT</option>
+        </select>
+
+      </div>
+
+      <div class="col-4">
+
+        <h2>Gender</h2>
+        <select name="gender" class="form-select" aria-label="Default select example" required>
+          <option selected>{{ student.gender }}</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row apli-name">
+      <h2>Full Name of Applicant</h2>
+      <div class="col-4">
+        <input type="text" class="form-control st-det" name="stfirst" placeholder="First" value="{{ student.first_name }}" aria-label="First" required>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control st-det" name="stmiddle" placeholder="Middle" value="{{ student.middle_name }}" aria-label="Middle" required>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control st-det" name="stlast" placeholder="Last" value="{{ student.last_name }}" aria-label="Last" required>
+      </div>
+    </div>
+
+    <div class="row apli-name">
+      <h2>Parent / Guardian's Name</h2>
+      <div class="col-4">
+        <input type="text" class="form-control st-det" name="prfirst" placeholder="First" value="{{ student.parent_first_name }}" aria-label="First" required>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control st-det" name="prmiddle" placeholder="Middle" value="{{ student.parent_middle_name }}" aria-label="Middle" required>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control st-det" name="prlast" placeholder="Last" value="{{ student.parent_last_name }}" aria-label="Last" required>
+      </div>
+    </div>
+
+    <h2 class="apli-name">Parent / Guardian's Occupation</h2>
+    <div class="col-6">
+      <input type="text" class="form-control" name="proccupation" placeholder="" value="{{ student.parents_occupation }}" aria-label="occupation" required>
+    </div>
+
+    <h2 class="apli-name">Date of Birth</h2>
+    <div class="col-6">
+      <input type="date" class="form-control" name="dob" placeholder="DD/MM/YYYY" value="{{ student.dob }}" aria-label="dob" required>
+    </div>
+
+    <h2 class="apli-name">Permanant Address</h2>
+    <input type="text" class="form-control" name="street" placeholder="Street Address" value="{{ student.street_address }}" aria-label="Street Address" required>
+    <div class="row apli-name">
+      <div class="col-4">
+        <input type="text" class="form-control" name="city" placeholder="City" value="{{ student.city }}" aria-label="city" required>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" name="state" placeholder="State" value="{{ student.state }}" aria-label="state" required>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" name="postalcode" placeholder="Postal / Zip code" value="{{ student.postal_code }}" aria-label="postalcode" required>
+      </div>
+    </div>
+
+    <h2 class="apli-name">Applicant's Phone</h2>
+    <input type="text" class="form-control" name="number" placeholder="#### #### ##" value="{{ student.phone_no }}" aria-label="phone" required>
+
+    <h2 class="apli-name">Parent / Guardian's Phone</h2>
+    <input type="text" class="form-control" name="prnumber" placeholder="#### #### ##" value="{{ student.parents_phone_no }}" aria-label="prphone" required>
+
+    <h2 class="apli-name">Email (Optional)</h2>
+    <input type="email" class="form-control" name="email" placeholder="abc@gmail.com" value="{{ student.email }}" aria-label="email">
+
+    <h2 class="apli-name">Fees Payment</h2>
+    {% if student.fees=="Pending" %}
+    <div class="form-check">
+      <input name="fees" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Done">
+      <label class="form-check-label" for="flexRadioDefault1">
+        Done
+      </label>
+    </div>
+    <div class="form-check">
+      <input name="fees" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Pending" checked>
+      <label class="form-check-label" for="flexRadioDefault2">
+        Pending
+      </label>
+    </div>
+    {% else %}
+    <div class="form-check">
+      <input name="fees" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Done" checked>
+      <label class="form-check-label" for="flexRadioDefault1">
+        Done
+      </label>
+    </div>
+    <div class="form-check">
+      <input name="fees" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Pending">
+      <label class="form-check-label" for="flexRadioDefault2">
+        Pending
+      </label>
+    </div>
+    {% endif %}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Save Changes
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sure</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Do You Want to Save the Changes?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-dark">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="{{ url_for('update_student') }}" class="btn btn-dark">Back</a>
+
+
+  </div>
+
+</form>
+
+
+
+
+
+{% endblock body %}

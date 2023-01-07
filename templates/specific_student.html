@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ student.first_name }}{% endblock title %}
+
+{% block body %}
+<div class="container full-det">
+  <div class="row">
+    <div class="col-3 st-full-det">
+
+      {% if student.gender=="Male" %}
+      <img src="https://cdn-icons-png.flaticon.com/128/4128/4128176.png" alt="">
+      {% else %}
+      <img src="https://cdn-icons-png.flaticon.com/128/6997/6997662.png" alt="">
+      {% endif %}
+      <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+      <h2>{{ student.course }}</h2>
+      <h2>Roll No. {{ student.roll_no }}</h2>
+    </div>
+    <div class="col-9">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Full Name - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Parent's Name - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.parent_first_name }} {{ student.parent_middle_name }} {{ student.parent_last_name }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Date of Admission - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.admission_date }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Batch - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.batch }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Date of Birth - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.dob }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Address - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.street_address }} {{ student.city }} {{ student.state }} {{ student.postal_code }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Phone No. - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.phone_no }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Parent's Phone No. - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.parents_phone_no }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Email. - </h3>
+        </div>
+        <div class="col-8">
+          <h3>{{ student.email }}</h3>
+        </div>
+      </div>
+      <hr class="hr-full">
+      <div class="row">
+
+        <div class="col-4">
+          <h3>Fees - </h3>
+        </div>
+        <div class="col-8">
+          {% if student.fees=="Done" %}
+          <h3 style="color: green;">{{ student.fees }}</h3>
+          {% else %}
+          <h3 style="color: red;">{{ student.fees }}</h3>
+          {% endif %}
+        </div>
+      </div>
+      <hr class="hr-full">
+    </div>
+  </div>
+</div>
+<div class="container" style="text-align: center; margin-top: 1%;">
+  <a href="{{ url_for('del_record', id=student.id) }}" class="btn btn-danger">Delete Record</a>
+</div>
+
+
+{% endblock body %}

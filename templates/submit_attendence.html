@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}TESTING{% endblock title %}
+
+{% block body %}
+<div class="date container-fluid">
+
+  <h3>{{ date }}</h3>
+
+</div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="alert alert-{{ messages.0.0 }}" role="alert">
+  {% for category, message in messages %}
+  <h5 class="flash add">{{ message }}</h5>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+<form class="" action="{{ url_for('attendence') }}" method="post">
+
+  {% if course %}
+
+  <div class="input-group mb-3 sel-course">
+
+    <select name="course" class="form-select" aria-label="Default select example" required>
+      <option selected>{{ course }}</option>
+      <option value="FYBCOM">FYBCOM</option>
+      <option value="SYBCOM">SYBCOM</option>
+      <option value="TYBCOM">TYBCOM</option>
+      <option value="FYBAF">FYBAF</option>
+      <option value="SYBAF">SYBAF</option>
+      <option value="TYBAF">TYBAF</option>
+      <option value="FYBMS">FYBMS</option>
+      <option value="SYBMS">SYBMS</option>
+      <option value="TYBMS">TYBMS</option>
+      <option value="FYBSCIT">FYBSCIT</option>
+      <option value="SYBSCIT">SYBSCIT</option>
+      <option value="TYBSCIT">TYBSCIT</option>
+    </select>
+    <button type="submit" class="btn btn-dark" name="button">Go</button>
+  </div>
+
+  {% else %}
+  <div class="input-group mb-3 sel-course">
+
+    <select name="course" class="form-select" aria-label="Default select example" required>
+      <option selected>select_course</option>
+      <option value="FYBCOM">FYBCOM</option>
+      <option value="SYBCOM">SYBCOM</option>
+      <option value="TYBCOM">TYBCOM</option>
+      <option value="FYBAF">FYBAF</option>
+      <option value="SYBAF">SYBAF</option>
+      <option value="TYBAF">TYBAF</option>
+      <option value="FYBMS">FYBMS</option>
+      <option value="SYBMS">SYBMS</option>
+      <option value="TYBMS">TYBMS</option>
+      <option value="FYBSCIT">FYBSCIT</option>
+      <option value="SYBSCIT">SYBSCIT</option>
+      <option value="TYBSCIT">TYBSCIT</option>
+    </select>
+    <button type="submit" class="btn btn-dark" name="button">Go</button>
+  </div>
+  {% endif %}
+</form>
+
+<form class="" action="{{ url_for('submit_att') }}" method="post">
+  <input type="text" name="selected_course" value="{{ course }}" hidden>
+  <div class="input-group sel-course">
+
+    <select class="form-select" name="subject" id="inputGroupSelect04" aria-label="Example select with button addon" required>
+      <option selected>Select Subject</option>
+      {% for i in subject %}
+      <option value="{{ i }}">{{ i }}</option>
+      {% endfor %}
+    </select>
+
+  </div>
+
+
+  {% if course_students %}
+  <div class="container st-table">
+
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Roll no.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Gender</th>
+        </tr>
+      </thead>
+      {% for i in course_students %}
+      <tbody>
+        <tr>
+          <td>{{ i.roll_no }}</td>
+          <td>{{ i.first_name }} {{ i.middle_name }} {{ i.last_name }}</td>
+          <td>{{ i.gender }}</td>
+          <td>
+            <div class="form-check form-switch">
+              <input class="form-check-input" name="attendence" value="{{  i.roll_no}}" type="checkbox" id="flexSwitchCheckChecked">
+              <label class="form-check-label" for="flexSwitchCheckChecked">Present</label>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button type="submit" name="button" class="btn btn-dark">Submit</button>
+    <a href="{{ url_for('index') }}" class="btn btn-dark">Back</a>
+  </div>
+
+</form>
+{% else %}
+<div class="empty container">
+  <img src="https://cdn-icons-png.flaticon.com/128/6598/6598519.png" alt="">
+  <h1 style="font-weight:bold;">NO STUDENT IN THIS CLASS</h1>
+</div>
+{% endif %}
+{% endblock body %}

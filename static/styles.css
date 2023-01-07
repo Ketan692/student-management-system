@@ -1,0 +1,197 @@
+.login, .flash, .add-hd, .search-student, .no-record, .all-st, .empty, footer, .st-full-det, .date, .subjects {
+  text-align: center;
+}
+
+.log-title, .navbar-brand, .nav-item, .heading, .st-details-head, .add-hd, .subjects, .fees-body {
+  font-weight: bold;
+}
+
+.login {
+  background-color: #EEEEEE;
+  border-radius: 8px;
+  margin: 2% auto;
+  padding: 2%;
+  width: 25%;
+}
+
+.log-img {
+  width: 25%;
+}
+
+.dis {
+  line-height: 2;
+}
+
+.login-body {
+  background-image: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
+  background-size: cover;
+}
+
+.navbar-brand, .nav-item {
+  font-size: 2rem;
+  letter-spacing: 3px;
+}
+
+.nav-item {
+  font-size: 1.2rem;
+}
+
+.heading {
+  margin: 1%;
+}
+
+.dash-students, .dash-attendants, .dash-fees {
+  border-radius: 8px;
+  margin: 0 1%;
+  padding: 2%;
+}
+
+.dash-students, .flash {
+  background-color: red;
+}
+
+.dash-attendants {
+  background-color: blue;
+}
+
+.dash-fees {
+  background-color: green;
+}
+
+.flash {
+  background-color: yellow;
+  border-radius: 8px;
+  margin: 0 35%;
+  padding: 0.5% 0;
+}
+
+.st-details {
+  background-color: #ADA2FF;
+}
+
+.st-details-values {
+  background-color: #FFF8E1;
+}
+
+.st-row {
+  border-bottom: 2px solid black;
+}
+
+.st-de-co {
+  border-right: 2px solid black;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+.ds-lk {
+  color: #fff;
+}
+
+.ds-lk:hover {
+  color: black;
+}
+
+
+.add-hd {
+  text-decoration: underline;
+}
+
+.form-select {
+  width: 50%
+}
+
+.apli-name {
+  margin-top: 2%;
+}
+
+.st-det {
+  width: 75%;
+}
+
+.add-st {
+  margin-top: 2%;
+  padding: 1%;
+  border-radius: 8px;
+}
+
+.search-student {
+  margin: 1% auto;
+  width: 30%;
+}
+
+
+.add, .add-st {
+  background-color: #dcf4ef;
+  color: #469150;
+}
+
+.all-st {
+  margin: 1% auto;
+}
+
+.sel-course {
+  padding: 1% 40%;
+}
+
+.date {
+  background-color: yellow;
+  width: 15%;
+  padding: 0.1%;
+  border-radius: 8px;
+  margin-top: 1%;
+}
+
+.subjects {
+  width: 30%;
+  margin-top: 2%;
+  font-size: 1.2rem;
+}
+
+.courses {
+  padding:0;
+}
+
+.cour-hid {
+  display: none;
+}
+
+.st-table {
+  font-size: 1.2rem;
+}
+
+.fees-body {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.st-full-det {
+  border-right: 5px solid black;
+}
+
+.full-det {
+  margin-top: 2%;
+  border: 5px solid grey;
+  padding: 2%;
+  border-radius: 8px;
+  background-color: #F7F5EB;
+}
+
+footer {
+  margin-top: 20%;
+  font-size: 1.5rem;
+}
+
+.social-icon {
+  margin: 10px;
+}
+
+.social-icon, .social-icon:hover {
+  color: black;
+}
+
+.hr-full {
+  border-top: 5px dashed black;
+}
