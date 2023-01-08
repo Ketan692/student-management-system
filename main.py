@@ -227,7 +227,8 @@ def add_student():
         if len(students_list) == 0:
             roll_no = 1
         else:
-            roll_no = len(students_list)+1
+            rl_det = int(students_list[-1].roll_no)
+            roll_no = rl_det+1
 
         if fees == "Done":
             new_fees = Fees(
@@ -304,13 +305,23 @@ def all_students():
 
 @app.route("/home/students/student_records/<id>")
 def specific_student(id):
-    a = id
     the_student = None
     students = Student_details.query.all()
+    att = Attendence.query.all()
+    att_available = False
+    present = 0
+    total = 0
+    for k in att:
+        if int(k.student_id) == int(id):
+            att_available = True
+            total += 1
+            if k.status == "Present":
+                present += 1
+    the_att = f"{present}/{total}"
     for i in students:
         if i.id == int(id):
             the_student = i
-    return render_template('specific_student.html', student=the_student, len_of_email = len(the_student.email))
+    return render_template('specific_student.html', student=the_student, len_of_email=len(the_student.email), old=att_available, att_rec=the_att)
 
 
 @app.route("/home/students/update_records", methods=["GET", "POST"])
